@@ -4,12 +4,14 @@ package model;
 // number of projects funded
 public class Sponsor {
 
-    // TODO
+    // EFFECTS: constructs a sponsor with given name and
+    // no projects funded
     public Sponsor(String name) {
         // stub
     }
 
-    // TODO
+    // MODIFIES: this
+    // EFFECTS: adds one to number of projects funded by this sponsor
     public void fundProject() {
         // stub
     }

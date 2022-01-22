@@ -4,6 +4,9 @@ import model.ProjectInNeed;
 
 public class HelpingHandApp {
     public static void main(String[] args) {
-        // TODO
+        ProjectInNeed project = new ProjectInNeed("SportsForKids", 5000);
+        project.increaseTargetBy(1000);
+        project.decreaseTargetBy(500);
+        project.fund(250);
     }
 }
