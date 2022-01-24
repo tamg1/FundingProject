@@ -18,14 +18,14 @@ public class ProjectInNeed {
         // stub
     }
 
-    // REQUIRES: amount > 0
+    // REQUIRES: amount > 0 AND amount < getTarget()
     // MODIFIES: this
     // EFFECTS: decreases funding target for this project by amount (in $)
     public void decreaseTargetBy(int amount) {
         // stub
     }
 
-    // REQUIRES: amount > 0 AND getTarget() - getAmountFunded() <= amount
+    // REQUIRES: amount > 0 AND getTarget() - getAmountFunded() >= amount
     // MODIFIES: this
     // EFFECTS: funds this project by amount by increasing the amountFunded by the given amount
     public void fund(int amount) {
