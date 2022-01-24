@@ -5,8 +5,8 @@ package model;
 public class ProjectInNeed {
 
     // REQUIRES: target >= 100
-    // EFFECTS: constructs project with given title and target funding,
-    // with an empty list of sponsors and zero funding applied
+    // EFFECTS: constructs project with given title and target funding
+    // and zero funding applied
     public ProjectInNeed(String title, int target) {
         // stub
     }
@@ -19,6 +19,7 @@ public class ProjectInNeed {
     }
 
     // REQUIRES: amount > 0 AND amount < getTarget()
+    // amount > 0 AND getTarget() - amount >= getAmountFunded()
     // MODIFIES: this
     // EFFECTS: decreases funding target for this project by amount (in $)
     public void decreaseTargetBy(int amount) {
