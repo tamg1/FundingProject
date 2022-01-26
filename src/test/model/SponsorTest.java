@@ -7,24 +7,33 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SponsorTest {
-    private Sponsor testSponsor;
+    private Sponsor testSponsor1;
+    private Sponsor testSponsor2;
 
     @BeforeEach
     void runBefore() {
-        testSponsor = new Sponsor("Mary Mae");
+        testSponsor1 = new Sponsor("Mary Mae");
+        testSponsor2 = new Sponsor("Hiroshi Masuda");
     }
 
     @Test
     void testConstructor() {
-        assertEquals("Mary Mae", testSponsor.getName());
-        assertEquals(0, testSponsor.getNumProjectsFunded());
+        assertEquals("Mary Mae", testSponsor1.getName());
+        assertEquals(0, testSponsor1.getNumProjectsFunded());
+    }
+
+    @Test
+    void testConstructorSecondCase() {
+        assertEquals("Hiroshi Masuda", testSponsor2.getName());
+        assertEquals(0, testSponsor2.getNumProjectsFunded());
     }
 
     @Test
     void testFundProject() {
-        testSponsor.fundProject();
-        assertEquals(1, testSponsor.getNumProjectsFunded());
-        testSponsor.fundProject();
-        assertEquals(2, testSponsor.getNumProjectsFunded());
+        assertEquals(0, testSponsor1.getNumProjectsFunded());
+        testSponsor1.fundProject();
+        assertEquals(1, testSponsor1.getNumProjectsFunded());
+        testSponsor1.fundProject();
+        assertEquals(2, testSponsor1.getNumProjectsFunded());
     }
 }
