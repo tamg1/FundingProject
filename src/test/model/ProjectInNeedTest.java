@@ -12,7 +12,7 @@ class ProjectInNeedTest {
     @BeforeEach
     void runBefore() {
         foodBankProject = new ProjectInNeed("Community Food Bank", 10000);
-        animalRescueProject = new ProjectInNeed("Animal Rescue", 4500);
+        animalRescueProject = new ProjectInNeed("Animal Rescue", 100);
     }
 
     @Test
@@ -25,7 +25,7 @@ class ProjectInNeedTest {
     @Test
     void testConstructorSecondCase() {
         assertEquals("Animal Rescue", animalRescueProject.getTitle());
-        assertEquals(4500, animalRescueProject.getTarget());
+        assertEquals(100, animalRescueProject.getTarget());
         assertEquals(0, animalRescueProject.getAmountFunded());
     }
 
@@ -75,15 +75,6 @@ class ProjectInNeedTest {
     }
 
     @Test
-    void testDecreaseTargetByTwiceToZero() {
-        foodBankProject.decreaseTargetBy(100);
-        assertEquals(9900, foodBankProject.getTarget());
-
-        foodBankProject.decreaseTargetBy(9900);
-        assertEquals(0, foodBankProject.getTarget());
-    }
-
-    @Test
     void testFundProject() {
         foodBankProject.fund(500);
         assertEquals(500, foodBankProject.getAmountFunded());
@@ -101,15 +92,6 @@ class ProjectInNeedTest {
     @Test
     void testFundProjectToTarget() {
         foodBankProject.fund(10000);
-        assertEquals(10000, foodBankProject.getAmountFunded());
-    }
-
-    @Test
-    void testFundProjectTwiceToTarget() {
-        foodBankProject.fund(6200);
-        assertEquals(6200, foodBankProject.getAmountFunded());
-
-        foodBankProject.fund(3800);
         assertEquals(10000, foodBankProject.getAmountFunded());
     }
 }
