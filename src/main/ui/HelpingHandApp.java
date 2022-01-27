@@ -1,5 +1,6 @@
 package ui;
 
+import java.util.List;
 import model.ProjectInNeed;
 import model.Sponsor;
 
@@ -16,5 +17,18 @@ public class HelpingHandApp {
 
         animalRescueProject.fund(universitySponsor, 50);
         animalRescueProject.fund(coffeeShopSponsor, 30);
+
+        System.out.println("Status of project 'Community Food Bank':");
+        printSponsors(foodBankProject.getSponsors());
+
+        System.out.println("Status of project 'Animal Rescue':");
+        printSponsors(animalRescueProject.getSponsors());
+    }
+
+    private static void printSponsors(List<Sponsor> sponsors) {
+        for (Sponsor sponsor : sponsors) {
+            System.out.println("=> Sponsor " + sponsor.getName() + " (funded "
+                    + sponsor.getNumProjectsFunded() + " projects)");
+        }
     }
 }
