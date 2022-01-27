@@ -4,15 +4,22 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class ProjectInNeedTest {
+
     private ProjectInNeed foodBankProject;
     private ProjectInNeed animalRescueProject;
+
+    private Sponsor bikeShopSponsor;
+    private Sponsor universitySponsor;
 
     @BeforeEach
     void runBefore() {
         foodBankProject = new ProjectInNeed("Community Food Bank", 10000);
         animalRescueProject = new ProjectInNeed("Animal Rescue", 100);
+        bikeShopSponsor = new Sponsor("Bike Shop");
+        universitySponsor = new Sponsor("University");
     }
 
     @Test
@@ -20,6 +27,8 @@ class ProjectInNeedTest {
         assertEquals("Community Food Bank", foodBankProject.getTitle());
         assertEquals(10000, foodBankProject.getTarget());
         assertEquals(0, foodBankProject.getAmountFunded());
+        assertNotNull(foodBankProject.getSponsors());
+        assertEquals(0, foodBankProject.getSponsors().size());
     }
 
     @Test
@@ -27,6 +36,8 @@ class ProjectInNeedTest {
         assertEquals("Animal Rescue", animalRescueProject.getTitle());
         assertEquals(100, animalRescueProject.getTarget());
         assertEquals(0, animalRescueProject.getAmountFunded());
+        assertNotNull(animalRescueProject.getSponsors());
+        assertEquals(0, animalRescueProject.getSponsors().size());
     }
 
     @Test
@@ -62,7 +73,7 @@ class ProjectInNeedTest {
 
     @Test
     void testDecreaseTargetByPartiallyFundedToTarget() {
-        foodBankProject.fund(900);
+        foodBankProject.fund(bikeShopSponsor, 900);
 
         foodBankProject.decreaseTargetBy(9100);
         assertEquals(900, foodBankProject.getTarget());
@@ -76,22 +87,42 @@ class ProjectInNeedTest {
 
     @Test
     void testFundProject() {
-        foodBankProject.fund(500);
+        foodBankProject.fund(bikeShopSponsor, 500);
         assertEquals(500, foodBankProject.getAmountFunded());
 
-        foodBankProject.fund(750);
+        foodBankProject.fund(bikeShopSponsor, 750);
         assertEquals(1250, foodBankProject.getAmountFunded());
     }
 
     @Test
     void testFundProjectOneDollar() {
-        foodBankProject.fund(1);
+        foodBankProject.fund(bikeShopSponsor, 1);
         assertEquals(1, foodBankProject.getAmountFunded());
     }
 
     @Test
     void testFundProjectToTarget() {
-        foodBankProject.fund(10000);
+        foodBankProject.fund(bikeShopSponsor, 10000);
         assertEquals(10000, foodBankProject.getAmountFunded());
+    }
+
+    @Test
+    void testFundProjectSponsorsAdded() {
+        foodBankProject.fund(bikeShopSponsor, 1);
+        assertEquals(1, foodBankProject.getSponsors().size());
+        assertEquals(bikeShopSponsor, foodBankProject.getSponsors().get(0));
+
+        foodBankProject.fund(universitySponsor, 1);
+        assertEquals(2, foodBankProject.getSponsors().size());
+        assertEquals(universitySponsor, foodBankProject.getSponsors().get(1));
+    }
+
+    @Test
+    void testFundProjectSponsorsAmountIncremented() {
+        foodBankProject.fund(bikeShopSponsor, 1);
+        assertEquals(1, bikeShopSponsor.getNumProjectsFunded());
+
+        foodBankProject.fund(bikeShopSponsor, 1);
+        assertEquals(2, bikeShopSponsor.getNumProjectsFunded());
     }
 }

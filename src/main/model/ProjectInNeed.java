@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // Represents a project in need of funding that has
 // a title, target funding amount (in $), and amount funded (in $).
 public class ProjectInNeed {
@@ -7,14 +10,17 @@ public class ProjectInNeed {
     private String title;
     private int target;
     private int amountFunded;
+    private List<Sponsor> sponsors;
 
     // REQUIRES: target >= 100
-    // EFFECTS: constructs project with given title and target funding
-    // and zero funding applied
+    // EFFECTS: constructs project with given title and target funding.
+    //  Initially, projects have zero as amount funded and an empty list
+    //  of sponsors.
     public ProjectInNeed(String title, int target) {
         this.title = title;
         this.target = target;
         this.amountFunded = 0;
+        this.sponsors = new ArrayList<>();
     }
 
     // REQUIRES: amount > 0
@@ -33,8 +39,12 @@ public class ProjectInNeed {
 
     // REQUIRES: amount > 0 AND getTarget() - getAmountFunded() >= amount
     // MODIFIES: this
-    // EFFECTS: funds this project by amount by increasing the amountFunded by the given amount
-    public void fund(int amount) {
+    // EFFECTS: funds this project by amount by increasing the amountFunded
+    //  by the given amount. The given sponsor is added to the list of
+    //  sponsors and its amount of funded projects is incremented.
+    public void fund(Sponsor sponsor, int amount) {
+        sponsor.fundProject();
+        this.sponsors.add(sponsor);
         this.amountFunded = this.amountFunded + amount;
     }
 
@@ -50,4 +60,7 @@ public class ProjectInNeed {
         return amountFunded;
     }
 
+    public List<Sponsor> getSponsors() {
+        return sponsors;
+    }
 }
