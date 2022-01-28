@@ -38,7 +38,7 @@ public class ProjectInNeed {
     }
 
     // REQUIRES: amount > 0 AND getTarget() - getAmountFunded() >= amount
-    // MODIFIES: this
+    // MODIFIES: this, sponsor
     // EFFECTS: funds this project by amount by increasing the amountFunded
     //  by the given amount. The given sponsor is added to the list of
     //  sponsors and its amount of funded projects is incremented.
