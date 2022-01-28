@@ -118,7 +118,7 @@ class ProjectInNeedTest {
     }
 
     @Test
-    void testFundProjectSponsorsAmountIncremented() {
+    void testFundProjectSponsorsProjectsIncremented() {
         foodBankProject.fund(bikeShopSponsor, 1);
         assertEquals(1, bikeShopSponsor.getNumProjectsFunded());
 
